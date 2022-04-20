@@ -1,3 +1,4 @@
+const fs = require ('fs')
 const { prompt } = require('inquirer');
 const inquirer = require('inquirer');
 //const {writeFile} = require("./src/html-template")
@@ -8,11 +9,10 @@ const { employeePromptArray, managerOfficeNumObj, internOrEngineerPrompt, engine
 //const // this should use object destructuring to copy all arrays = require (`./lib/prompts`)
 const teamArray = [];
 // look into async await 
-const {generateEmployeeData, createCard, writeFile} = require(`./src/page-template`)
+const {generateEmployeeData, createCard,template, writeFile} = require(`./src/page-template`)
 
 const createFile = (finishedTeamObject) => {
-  (generateEmployeeData(finishedTeamObject))
-  
+  writeFile(template(finishedTeamObject))
 }
 
 const internOrEngineer = () => {
