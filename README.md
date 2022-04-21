@@ -9,4 +9,5 @@ This was tested using the Jest framework, testing each of the objects as they we
 ## Licensing 
 This is not licensed 
 
-<iframe src="https://drive.google.com/file/d/1O0BjD5TsVv3FIzlde7OqNgMNFyrRreY1/preview" width="640" height="480"></iframe>
+## Video
+Link the the [video](https://drive.google.com/file/d/1O0BjD5TsVv3FIzlde7OqNgMNFyrRreY1/preview)
