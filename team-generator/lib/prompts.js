@@ -74,7 +74,7 @@ const employeePromptArray = [
     {
       type: 'input',
       name: 'email',
-      message: 'What is theis employees email? (Required)',
+      message: 'What is this employees email? (Required)',
       validate: nameInput => {
         if (nameInput) {
           return true;

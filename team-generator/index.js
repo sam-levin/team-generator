@@ -25,6 +25,11 @@ const internOrEngineer = () => {
 }
 
 const promtEngineer = () => {
+  console.log(`
+  =================
+  Add your Engineer Data
+  =================
+  `);
   let engineerQsArray = [... employeePromptArray]
   engineerQsArray.splice(3,0,engineerGithubObj)
   return inquirer
@@ -64,6 +69,11 @@ managerQsArray.splice(3,0,managerOfficeNumObj)
 };
 
 const promtIntern = () => {
+  console.log(`
+  =================
+  Add your Intern Data
+  =================
+  `);
   let internQsArray = [... employeePromptArray]
   internQsArray.splice(3,0,internSchoolObj)
   return inquirer
