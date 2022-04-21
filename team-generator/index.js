@@ -9,11 +9,8 @@ const { employeePromptArray, managerOfficeNumObj, internOrEngineerPrompt, engine
 //const // this should use object destructuring to copy all arrays = require (`./lib/prompts`)
 const teamArray = [];
 // look into async await 
-const {generateEmployeeData, createCard,template, writeFile} = require(`./src/page-template`)
+const {template, writeFile} = require(`./src/page-template`)
 
-const createFile = (finishedTeamObject) => {
-  writeFile(template(finishedTeamObject))
-}
 
 const internOrEngineer = () => {
   return inquirer
@@ -39,7 +36,7 @@ const promtEngineer = () => {
            {
         return internOrEngineer();
       } else {
-        createFile(teamArray);
+        writeFile(template(teamArray));
       }
     });
 }
@@ -61,7 +58,7 @@ managerQsArray.splice(3,0,managerOfficeNumObj)
            {
         return internOrEngineer();
       } else {
-        createFile(teamArray);
+        writeFile(template(teamArray));
       }
     });
 };
@@ -78,7 +75,7 @@ const promtIntern = () => {
            {
         return internOrEngineer();
       } else {
-        createFile(teamArray);
+        writeFile(template(teamArray));
       }
     });
 }
@@ -88,22 +85,3 @@ const start = () => {
 }   
 
 start();
-
-
-    /*    return generatePage(portfolioData);
-    })
-    .then(pageHTML => {
-      return writeFile(pageHTML);
-    })*/
-
-
-    /* Basically, what I need to happen is a node file, that when called will ask for first the manager
-        then it will ask for other employees, or to finish building the team
-            if intern is selected, the intern will be created, then pushed to array of employees
-            if engineer is selected, the engineer will be created
-            these will all create objects
-            html file will create page 
-                for each employee in array
-                    create a card
-
-    */

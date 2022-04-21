@@ -31,12 +31,18 @@ const template = (teamObject) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Teammaker Demo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
   </head>
+  
+  <header>
+    <nav class="bg-primary text-light p-3">
+      <h2>Team Members</h2>
+    </nav>
+  </header>
 
-  <div class="employees">
+  <div class="employees container-fluid">
   ${generateEmployeeData(teamObject)}
   </div>
 
@@ -44,18 +50,28 @@ const template = (teamObject) => {
   
 }
 
+const extraObj = (employeeObj) => {
+  if (employeeObj.role === "Manager") {
+    return (`Office number : ${employeeObj.officeNum}`)
+  } else if (employeeObj.role === "Engineer") {
+    return (`Github : <a href="github.com/">${employeeObj.github}</a>`)
+  } else {
+    return (`School : ${employeeObj.school}`)
+  }
+
+}
 
 const createCard = (employeeObj) => {
   return `
-  <div class="card">
-    <div class="card-main">
+  <div class="card m-3">
+    <div class="card-header text-light p-2 bg-primary">
         <h3>${employeeObj.name}</h3>
-        <h4>${employeeObj.role}</h4>
+        <h3>Role: ${employeeObj.role}</h3>
     </div>
-    <div class="card-details">
-        <h6>${employeeObj.id}</h6>
-        <h6>${employeeObj.email}</h6>
-        <h6>Extra</h6>
+    <div class="card-body p-2">
+        <h6>Employee ID: ${employeeObj.id}</h6>
+        <h6>Email this Employee at <a href="mailto:${employeeObj.email}">${employeeObj.email}</a></h6>
+        <h6>${extraObj(employeeObj)}</h6>
     </div>
 </div>
   `
@@ -67,7 +83,7 @@ const generateEmployeeData = (finishedEmployeeArray) => {
   for (i = 0; i < finishedEmployeeArray.length; i++ ) {
     let newEmployeeCard = createCard(finishedEmployeeArray[i])
     //console.log(newEmployeeCard)
-    employeeString.concat(newEmployeeCard)
+    employeeString += newEmployeeCard
   }  
 
   return employeeString;
@@ -122,38 +138,3 @@ const generateProjects = projectsArr => {
 
 
 module.exports = {generateEmployeeData, template, createCard, writeFile}
-
-// module.exports = templateData => {
-//     // destructure page data by section
-//     const { projects, about, ...header } = templateData;
-  
-//     return `
-//     <!DOCTYPE html>
-//     <html lang="en">
-  
-//     <head>
-//       <meta charset="UTF-8">
-//       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//       <title>Portfolio Demo</title>
-//       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-//       <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
-//       <link rel="stylesheet" href="style.css">
-//     </head>
-  
-//     <body>
-//       <header>
-//         <div class="container flex-row justify-space-between align-center py-3">
-//           <h1 class="page-title text-secondary bg-dark py-2 px-3">${header.name}</h1>
-//         </div>
-//       </header>
-//       <main class="container my-5">
-//         ${generateTeamMembers(teamMembers)}
-//       </main>
-//       <footer class="container text-center py-3">
-//         <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
-//       </footer>
-//     </body>
-//     </html>
-//     `;
-//   };
